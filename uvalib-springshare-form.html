@@ -6,6 +6,9 @@
       :host {
         display: block;
       }
+      div, iframe {
+        height: 100%;
+      }
     </style>
     <div id="[[formId]]"></div>
     <script type="text/javascript" src="https://virginia.libsurveys.com/form_loader.php?id=[[_simpleVer(formId)]]"></script>
@@ -47,8 +50,13 @@
         else {
           var height = iframe.querySelector('iframe').height;
           this.shadowRoot.getElementById(this.formId).replaceWith(iframe);
-          iframe.style.cssText = 'display: block; visibility:visible; height:'+height;
-          iframe.querySelector('iframe').width = "100%";
+          iframe.style.cssText = 'display: block; visibility:visible'; //+height;
+
+          let ifrm = iframe.querySelector('iframe')
+          ifrm.style.display = "block";
+          ifrm.style.visibility = "visible";
+          ifrm.style.width = "100%";
+          ifrm.style.height = "100%";
         }
       }
     }
